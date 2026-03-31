@@ -3,15 +3,9 @@
 using namespace std;
 
 int sumSquares(int n) {
-    vector<int> squares;
-
-    for (int i = 1; i <= n; i++) {
-        squares.push_back(i * i);
-    }
-
     int sum = 0;
-    for (int square : squares) {
-        sum += square;
+    for (int i = 1; i <= n; i++) {
+        sum += (i * i);
     }
 
     return sum;
