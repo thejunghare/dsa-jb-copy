@@ -1,1 +1,0 @@
-// You have marks of students in an array: [45, 88, 72, 90, 60] Sort them in ascending order to display topper list.
