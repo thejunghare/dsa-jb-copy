@@ -74,6 +74,61 @@ void insertAtEnd(Node *&head, int value) {
   temp->address = newNode;
 }
 
+void insertInBetween(Node *&head, int value, int index) {
+
+  if (index == 0) {
+    insertAtHead(head, value);
+    return;
+  }
+
+  Node *newNode = new Node;
+  newNode->data = value;
+  newNode->address = NULL; // 2
+
+  Node *temp = head;
+  int i = 0;
+  while (temp != NULL && i < index - 1) {
+    temp = temp->address;
+    i++;
+  }
+
+  if (temp == NULL) {
+    delete newNode;
+    return;
+  }
+  newNode->address = temp->address;
+  temp->address = newNode;
+}
+
+void deleteNode(Node *&head, int value) {
+  // if list is empty
+  if (head == NULL) {
+    cout << "Linkedlist is empty " << endl;
+    return;
+  }
+
+  // node to be deleted is the head node
+  if (head->data == value) {
+    Node *temp = head;
+    head = head->address; // assign next node as node
+    delete temp;
+    return;
+  }
+
+  // node to be deleted is not the head
+  Node *temp = head;
+  while (temp != NULL && temp->address != NULL) {
+
+    if (temp->address->data == value) {
+      Node *nodeToDelete = temp->address;
+      temp->address = temp->address->address;
+      delete nodeToDelete;
+      return;
+    }
+    temp = temp->address;
+  }
+}
+
 int main() {
   Node *head = new Node;
   Node *second = new Node;
@@ -87,5 +142,7 @@ int main() {
   searchValue(head, 50);
   insertAtHead(head, 40);
   insertAtEnd(head, 100);
+  insertInBetween(head, 10, 2);
+  deleteNode(head, 70);
   printList(head);
 }
