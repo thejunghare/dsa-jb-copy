@@ -92,6 +92,19 @@ bool search(Node *root, int target)
     }
 }
 
+void printTree(Node *root)
+{
+    // Base Case: If the current spot is empty, turn back
+    if (root == nullptr)
+    {
+        return;
+    }
+
+    printTree(root->left);     // 1. Go all the way left
+    cout << root->data << " "; // 2. Print the current node
+    printTree(root->right);    // 3. Go right
+}
+
 int main()
 {
     Node *root = nullptr;
@@ -99,10 +112,11 @@ int main()
     insertNode(root, 50);
     insertNode(root, 30);
     insertNode(root, 40);
-    // insertNode(root, 70);
-    // insertNode(root, 80);
+    insertNode(root, 70);
 
     // cout << root->data;
 
     findMin(root);
+
+    printTree(root);
 }
